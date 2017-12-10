@@ -8,7 +8,8 @@ export class Helpers {
     return Helpers.getTimeStampString(dObject);
   }
 
-  static convertTemperaturekelvinToCelcius = (val: number) => val - 273.15;
+  static convertTemperaturekelvinToCelcius = (val: number): number =>
+    parseFloat((val - 273.15).toFixed(2));
 
   static materializeViewModel(
     weatherReport: WeatherReport
@@ -46,6 +47,11 @@ export class Helpers {
     if (!dateObject) {
       throw new Error('dObject is a required paramter.');
     }
-    return `${dateObject.getHours()}:${dateObject.getMinutes()}:${dateObject.getSeconds()}`;
+    const getNumber = (val: number): string =>
+      val < 10 ? `0${val}` : val.toString();
+
+    return `${getNumber(dateObject.getHours())}:${getNumber(
+      dateObject.getMinutes()
+    )}:${getNumber(dateObject.getSeconds())}`;
   }
 }

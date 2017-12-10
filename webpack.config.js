@@ -16,6 +16,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.s[a|c]ss$/,
+        loader: 'style!css!sass',
+      },
+      {
         test: /\.ts$/,
         exclude: /node_modules|vue\/src/,
         loader: 'ts-loader',
@@ -29,6 +33,17 @@ module.exports = {
         options: {
           esModule: true,
         },
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
       },
     ],
   },

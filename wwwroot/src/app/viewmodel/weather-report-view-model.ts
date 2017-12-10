@@ -35,6 +35,6 @@ export class WeatherReportViewModel {
   }
 
   get temperature(): number {
-    return Helpers.convertTemperaturekelvinToCelcius(this.temperature);
+    return Helpers.convertTemperaturekelvinToCelcius(this.temperatureInKelvin);
   }
 }

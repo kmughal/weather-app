@@ -1,13 +1,20 @@
 <template>
  <div>
-    <h1 style="text-aign:center;">{{vm.country}}</h1>
-    <div style="text-aign:center;font-size:1rem;">{{vm.city}}</div>
-    <div style="text-align:center;">
-      <div>Sunrise:{{vm.sunrise}}</div>
-      <div>Sunset:{{vm.sunset}}</div>
-    </div>
+    <h1 class="temperature">
+        {{vm.temperature}}
+        <span>
+            &#x2103
+        </span>
+        <div class="city-detail">{{vm.city}},{{vm.country}}
+            <div>Sunrise: {{vm.sunrise}}</div>
+            <div>Sunset: {{vm.sunset}}</div>
+            <div>Cloud: {{vm.cloudPercentage}}%</div>
+        </div>
+    </h1>
+
+
        <div v-for="item in vm.details" :key="item.id">
-          <div>
+          <div class="detail-container">
               <img :src="item.icon"/>
               <span>{{item.description}}</span>
           </div>
@@ -36,8 +43,15 @@ export default class App extends Vue {
     const service = new WeatherService();
     service.get(this.$parent.$data.city).then((data: WeatherReport) => {
       this.vm = Helpers.materializeViewModel(data);
+      console.log(data);
+      console.log(this.vm);
     });
   }
 }
 
 </script>
+
+<style lang="scss">
+@import "./styles/style.scss";
+
+</style>
