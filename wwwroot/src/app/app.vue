@@ -11,8 +11,6 @@
             <div>Cloud: {{vm.cloudPercentage}}%</div>
         </div>
     </h1>
-
-
        <div v-for="item in vm.details" :key="item.id">
           <div class="detail-container">
               <img :src="item.icon"/>
@@ -21,7 +19,6 @@
       </div>
  </div>
 </template>
-
 
 <script lang='ts'>
 
@@ -36,15 +33,14 @@ import {Helpers} from './common/helpers';
 export default class App extends Vue {
   vm: WeatherReportViewModel = new WeatherReportViewModel();
 
-  created() {
+  public created() {
     this.getWeatherReport();
   }
+
   private getWeatherReport() {
     const service = new WeatherService();
     service.get(this.$parent.$data.city).then((data: WeatherReport) => {
       this.vm = Helpers.materializeViewModel(data);
-      console.log(data);
-      console.log(this.vm);
     });
   }
 }
@@ -52,6 +48,5 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import "./styles/style.scss";
-
+ @import "./styles/style.scss";
 </style>
